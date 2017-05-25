@@ -1,0 +1,28 @@
+{
+	"name": "sau/library",
+	"type": "library",
+	"description": "Basic library to help in designing ",
+	"keywords": [
+		"library",
+		"sau"
+	],
+	"homepage": "https://bitbucket.org/Akinay_Sau/sau-lib",
+	"license": "MIT",
+	"version": "v0.0.2",
+	"authors": [
+		{
+			"name": "Akinay Sau",
+			"email": "akinaysau@gmail.com",
+			"homepage": "http://a-sau.ru",
+			"role": "Developer"
+		}
+	],
+	"require": {
+		"php": ">=7.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"Sau_Lib_": "src/"
+		}
+	}
+}
