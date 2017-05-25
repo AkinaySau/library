@@ -9,6 +9,10 @@
 namespace Sau\Lib;
 
 class Register {
+
+	/**
+	 * @var mixed template data;
+	 */
 	protected static $temp;
 
 	/**
@@ -27,5 +31,22 @@ class Register {
 			Actions::afterSetupTheme( $callback );
 			self::$temp = null;
 		}
+	}
+
+	/**
+	 * Register plugin language
+	 *
+	 * @param string $domain          Unique identifier for retrieving translated strings
+	 * @param string $plugin_rel_path Optional. Relative path to WP_PLUGIN_DIR where the .mo file resides. Default false
+	 *
+	 * @return void
+	 */
+	public static function loadPluginTextdomain( $domain, $plugin_rel_path ) {
+		self::$temp = [ 'domain' => $domain, 'path' => $plugin_rel_path ];
+		$callback   = function () {
+			load_plugin_textdomain( self::$temp['domain'], false, self::$temp['path'] );
+		};
+		Actions::init( $callback );
+		self::$temp = null;
 	}
 }
