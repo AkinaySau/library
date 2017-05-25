@@ -9,6 +9,7 @@
 namespace Sau\Lib;
 
 class Register {
+	protected static $temp;
 
 	/**
 	 * Register menu
@@ -19,7 +20,12 @@ class Register {
 	 */
 	public static function menu( $array = [] ) {
 		if ( count( $array ) ) {
-			Actions::afterSetupTheme( register_nav_menus( $array ) );
+			self::$temp = $array;
+			$callback   = function () {
+				register_nav_menus( (array) self::$temp );
+			};
+			Actions::afterSetupTheme( $callback );
+			self::$temp = null;
 		}
 	}
 }
