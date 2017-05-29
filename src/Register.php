@@ -39,7 +39,6 @@ class Register {
 	public static function loadPluginTextdomain( $domain, $plugin_rel_path ) {
 		add_action(
 			'init', function () use ( &$domain, &$plugin_rel_path ) {
-			var_dump( self::$temp );
 			load_plugin_textdomain( $domain, false, $plugin_rel_path );
 		}
 		);
@@ -54,10 +53,9 @@ class Register {
 	 * @return void
 	 */
 	public static function loadThemeTextdomain( $domain, $path ) {
-		add_action(
-			'init', function () use ( &$domain, &$path ) {
+		$callback = function () use ( &$domain, &$path ) {
 			load_theme_textdomain( $domain, $path );
-		}
-		);
+		};
+		Action::init( $callback );
 	}
 }
