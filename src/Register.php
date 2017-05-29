@@ -11,11 +11,6 @@ namespace Sau\Lib;
 class Register {
 
 	/**
-	 * @var mixed template data;
-	 */
-	protected static $temp;
-
-	/**
 	 * Register menu
 	 *
 	 * @param array $array Is array where $key=slug_menu and $value=title_menu
@@ -24,13 +19,11 @@ class Register {
 	 */
 	public static function menu( $array = [] ) {
 		if ( count( $array ) ) {
-			self::$temp = $array;
 			add_action(
-				'after_setup_theme', function () {
-				register_nav_menus( self::$temp );
+				'after_setup_theme', function () use ( &$array ) {
+				register_nav_menus( $array );
 			}
 			);
-			self::$temp = null;
 		}
 	}
 
@@ -42,17 +35,14 @@ class Register {
 	 *
 	 * @return void
 	 */
+	//TODO: проверить
 	public static function loadPluginTextdomain( $domain, $plugin_rel_path ) {
-		self::$temp = [
-			'domain'          => $domain,
-			'plugin_rel_path' => $plugin_rel_path
-		];
 		add_action(
-			'init', function () {
-			load_plugin_textdomain( self::$temp['domain'], false, self::$temp['plugin_rel_path'] );
+			'init', function () use ( &$domain, &$plugin_rel_path ) {
+			var_dump( self::$temp );
+			load_plugin_textdomain( $domain, false, $plugin_rel_path );
 		}
 		);
-		self::$temp = null;
 	}
 
 	/**
@@ -64,15 +54,10 @@ class Register {
 	 * @return void
 	 */
 	public static function loadThemeTextdomain( $domain, $path ) {
-		self::$temp = [
-			'domain' => $domain,
-			'path'   => $path
-		];
 		add_action(
-			'init', function () {
-			load_theme_textdomain( self::$temp['domain'], self::$temp['path'] );
+			'init', function () use ( &$domain, &$path ) {
+			load_theme_textdomain( $domain, $path );
 		}
 		);
-		self::$temp = null;
 	}
 }
