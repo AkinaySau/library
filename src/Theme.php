@@ -40,4 +40,13 @@ class Theme {
 			}
 		);
 	}
+
+	/**
+	 * Enable thumbnails
+	 *
+	 * @return void
+	 */
+	public static function enableThumbnails() {
+		add_theme_support( 'post-thumbnails' );
+	}
 }
