@@ -25,10 +25,11 @@ class Register {
 	public static function menu( $array = [] ) {
 		if ( count( $array ) ) {
 			self::$temp = $array;
-			$callback   = function () {
-				register_nav_menus( (array) self::$temp );
-			};
-			Actions::afterSetupTheme( $callback );
+			add_action(
+				'after_setup_theme', function () {
+				register_nav_menus( self::$temp );
+			}
+			);
 			self::$temp = null;
 		}
 	}
@@ -42,11 +43,36 @@ class Register {
 	 * @return void
 	 */
 	public static function loadPluginTextdomain( $domain, $plugin_rel_path ) {
-		self::$temp = [ 'domain' => $domain, 'path' => $plugin_rel_path ];
-		$callback   = function () {
-			load_plugin_textdomain( self::$temp['domain'], false, self::$temp['path'] );
-		};
-		Actions::init( $callback );
+		self::$temp = [
+			'domain'          => $domain,
+			'plugin_rel_path' => $plugin_rel_path
+		];
+		add_action(
+			'init', function () {
+			load_plugin_textdomain( self::$temp['domain'], false, self::$temp['plugin_rel_path'] );
+		}
+		);
+		self::$temp = null;
+	}
+
+	/**
+	 * Register plugin language
+	 *
+	 * @param string $domain Text domain. Unique identifier for retrieving translated strings.
+	 * @param string $path   Optional. Path to the directory containing the .mo file. Default false.
+	 *
+	 * @return void
+	 */
+	public static function loadThemeTextdomain( $domain, $path ) {
+		self::$temp = [
+			'domain' => $domain,
+			'path'   => $path
+		];
+		add_action(
+			'init', function () {
+			load_theme_textdomain( self::$temp['domain'], self::$temp['path'] );
+		}
+		);
 		self::$temp = null;
 	}
 }
