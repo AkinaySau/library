@@ -21,4 +21,8 @@ class Action {
 	public static function init( $callback ) {
 		self::action( 'init', $callback );
 	}
+
+	public static function wpEnqueueScripts( $callback ) {
+		self::action( 'wp_enqueue_scripts', $callback );
+	}
 }
