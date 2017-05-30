@@ -123,7 +123,7 @@ class Posts {
 	}
 
 	public function getPosts() {
-		get_posts( $this->setting );
+		return get_posts( $this->setting );
 	}
 
 }
