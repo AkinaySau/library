@@ -49,4 +49,23 @@ class Theme {
 	public static function enableThumbnails() {
 		add_theme_support( 'post-thumbnails' );
 	}
+
+	/**
+	 * Register extend files
+	 *
+	 * @param array|object $array Array with information about the location of the files relative to the theme
+	 *
+	 * @return bool|array True if not error or array of not found files
+	 */
+	public static function addLib( $array = [] ) {
+		foreach ( $array as $file ) {
+			if ( file_exists( get_stylesheet_directory() . DIRECTORY_SEPARATOR . $file ) ) {
+				require $file;
+			} else {
+				$error[] = $file;
+			}
+		}
+
+		return $error??true;
+	}
 }
