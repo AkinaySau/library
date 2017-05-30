@@ -59,8 +59,8 @@ class Theme {
 	 */
 	public static function addLib( $array = [] ) {
 		foreach ( $array as $file ) {
-			if ( file_exists( get_stylesheet_directory() . DIRECTORY_SEPARATOR . $file ) ) {
-				require $file;
+			if ( file_exists( $path_to_file = get_stylesheet_directory() . DIRECTORY_SEPARATOR . $file ) ) {
+				require $path_to_file ;
 			} else {
 				$error[] = $file;
 			}
