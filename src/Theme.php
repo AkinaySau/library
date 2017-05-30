@@ -21,7 +21,7 @@ class Theme {
 		$callback = function () use ( &$domain, &$path ) {
 			load_theme_textdomain( $domain, $path );
 		};
-		Action::init( $callback );
+		Action::afterSetupTheme( $callback );
 	}
 
 	/**
