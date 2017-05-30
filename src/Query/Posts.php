@@ -126,4 +126,9 @@ class Posts {
 		return get_posts( $this->setting );
 	}
 
+	public function clear() {
+		$this->setting = [];
+
+		return $this;
+	}
 }
