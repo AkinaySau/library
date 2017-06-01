@@ -9,7 +9,8 @@
  * @param array  $extensions Массив с расширениями файлов
  * @param string $file_name  Имя файла который надо найти
  *
- * @return bool|string
+ *
+ * @return array
  */
 
 function scandir_ext( $path, $extensions = [], $file_name = '' ) {
