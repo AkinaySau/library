@@ -14,21 +14,22 @@
  */
 
 function scandir_ext( $path, $extensions = [], $file_name = '' ) {
+	$files = [];
 	if ( ! count( $extensions ) ) {
-		return scandir( $path );
+		if ( count( $temp = scandir( $path ) ) ) {
+			$files += $temp;
+		}
+
 	} else {
-		$files = [];
 		if ( ! empty( $file_name ) ) {
 			foreach ( $extensions as $extension ) {
 				$file = $path . DIRECTORY_SEPARATOR . $file_name . '.' . $extension;
 				if ( file_exists( $file ) ) {
-					$files[] = $file;
+					$files[] = $file_name . '.' . $extension;
 				}
-				unset( $file );
 			}
 		} else {
-			$temp  = scandir( $path );
-			$files = [];
+			$temp = scandir( $path );
 			if ( is_string( $extensions ) ) {
 				$extensions = [ $extensions ];
 			}
@@ -39,10 +40,11 @@ function scandir_ext( $path, $extensions = [], $file_name = '' ) {
 					}
 				}
 			}
-			unset( $temp, $file );
 
 		}
-
-		return $files;
+		unset( $file );
 	}
+	unset( $temp );
+
+	return $files;
 }
