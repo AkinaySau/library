@@ -23,6 +23,9 @@
 	"autoload": {
 		"psr-4": {
 			"Sau\\Lib\\": "src/"
-		}
+		},
+		"files":[
+			"functions/scandir_ext.php"
+		]
 	}
 }
