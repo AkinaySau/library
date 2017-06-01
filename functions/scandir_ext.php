@@ -29,8 +29,8 @@ function scandir_ext( $path, $extensions = [], $file_name = '' ) {
 		} else {
 			$temp  = scandir( $path );
 			$files = [];
-			if(is_string($extensions)){
-				$extensions[]=$extensions;
+			if ( is_string( $extensions ) ) {
+				$extensions = [ $extensions ];
 			}
 			foreach ( $extensions as $extension ) {
 				foreach ( $temp as $file ) {
