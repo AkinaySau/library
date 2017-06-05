@@ -23,6 +23,16 @@ class Action {
 	public static function afterSetupTheme( $callback, $priority = 10, $accepted_args = 1 ) {
 		self::action( 'after_setup_theme', $callback, $priority, $accepted_args );
 	}
+	/**
+	 * Для хука admin_notices
+	 *
+	 * @param callable $callback      Функция срабатывающая в момент события
+	 * @param int      $priority      Приоритет выполнения функции
+	 * @param int      $accepted_args Число аргументов которые принимает функция
+	 */
+	public static function adminNotices( $callback, $priority = 10, $accepted_args = 1 ) {
+		self::action( 'admin_notices', $callback, $priority, $accepted_args );
+	}
 
 	/**
 	 * Выполнение хука
