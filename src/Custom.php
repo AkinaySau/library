@@ -16,7 +16,7 @@ class Custom {
 	 * @param int    $width       Ширина логотипа
 	 * @param int    $height      Высота логотипа
 	 * @param bool   $link        Ссылка для логотипа
-	 * @param bool   $title
+	 * @param bool   $title       Аттрибут title ссылки
 	 */
 	public static final function loginLogo( $path_to_img, $width = 84, $height = 84, $link = false, $title = false ) {
 		$callback = function () use ( &$path_to_img, &$width, &$height ) {
