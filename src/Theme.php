@@ -36,18 +36,62 @@ class Theme {
 		add_action(
 			'wp_head',
 			function () use ( &$path ) {
+				echo '<link rel="icon" href="' . $path . '" />';
 				echo '<link rel="shortcut icon" href="' . $path . '" />';
 			}
 		);
 	}
 
 	/**
-	 * Enable thumbnails
+	 * Позволяет устанавливать миниатюру посту.
+	 * Доступна с версии 2.9.
+	 * Вы можете передать второй аргумент функции в виде массива,
+	 * в котором указать для каких типов постов разрешить миниатюры
+	 *
+	 * @param string|array $format Типы постов. Если не указано то будет добавлено ко всем
 	 *
 	 * @return void
 	 */
-	public static function enableThumbnails() {
-		add_theme_support( 'post-thumbnails' );
+	public static function addSupportPostThumbnails( $format = '' ) {
+		self::addThemeSupport( 'post-thumbnails', $format );
+	}
+
+	/**
+	 * Функция расширения
+	 *
+	 * @param string       $feature Название добавляемой возможности.
+	 * @param string|array $format  Дополнительные параметры. Для каждой возможности свои. У форматов постов тут указываем форматы, у миниатюр типы постов, где они будут работать и т.д.
+	 *
+	 * @return void
+	 */
+	protected static function addThemeSupport( $feature, $format = '' ) {
+		$callback = function () use ( &$feature, &$format ) {
+			if ( ! empty( $format ) || is_array( $format ) ) {
+				add_theme_support( $feature, $format );
+			} else {
+				add_theme_support( $feature );
+			}
+		};
+		Action::afterSetupTheme( $callback );
+	}
+
+	/**
+	 * Позволяет указывать формат посту.
+	 * Функция была добавлена в версии 3.1.
+	 *
+	 * @param string|array $format Форматы используйте второй аргумент функции
+	 *
+	 * @return void
+	 */
+	public static function addSupportPostFormat( $format = '' ) {
+		self::addThemeSupport( 'post-formats', $format );
+	}
+
+	/**
+	 * Если активировать эту опцию для темы, то в теме не нужно устанавливать метатег title. Он будет подключен автоматически через хук wp_head.
+	 */
+	public static function addSupportTitleTag() {
+		self::addThemeSupport( 'title-tag' );
 	}
 
 	/**
@@ -60,7 +104,7 @@ class Theme {
 	public static function addLib( $array = [] ) {
 		foreach ( $array as $file ) {
 			if ( file_exists( $path_to_file = get_stylesheet_directory() . DIRECTORY_SEPARATOR . $file ) ) {
-				require $path_to_file ;
+				require $path_to_file;
 			} else {
 				$error[] = $file;
 			}

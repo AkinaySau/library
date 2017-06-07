@@ -13,7 +13,7 @@
  * @return array
  */
 
-function scandir_ext( $path, $extensions = [], $file_name = '' ) {
+function sau_scandir_ext( $path, $extensions = [], $file_name = '' ) {
 	$files = [];
 	if ( ! count( $extensions ) ) {
 		if ( count( $temp = scandir( $path ) ) ) {

@@ -25,7 +25,8 @@
 			"Sau\\Lib\\": "src/"
 		},
 		"files":[
-			"functions/scandir_ext.php"
+			"functions/sau_scandir_ext.php",
+			"functions/sau_define.php"
 		]
 	}
 }
