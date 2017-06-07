@@ -24,6 +24,16 @@ class Action {
 		self::action( 'after_setup_theme', $callback, $priority, $accepted_args );
 	}
 	/**
+	 * Для хука login_head
+	 *
+	 * @param callable $callback      Функция срабатывающая в момент события
+	 * @param int      $priority      Приоритет выполнения функции
+	 * @param int      $accepted_args Число аргументов которые принимает функция
+	 */
+	public static function loginHead( $callback, $priority = 10, $accepted_args = 1 ) {
+		self::action( 'login_head', $callback, $priority, $accepted_args );
+	}
+	/**
 	 * Для хука admin_notices
 	 *
 	 * @param callable $callback      Функция срабатывающая в момент события
