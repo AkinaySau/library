@@ -99,4 +99,24 @@ class Action {
 	public static function wpEnqueueScripts( $callback, $priority = 10, $accepted_args = 1 ) {
 		self::action( 'wp_enqueue_scripts', $callback, $priority, $accepted_args );
 	}
+	/**
+	 * Для хука wp_head
+	 *
+	 * @param callable $callback      Функция срабатывающая в момент события
+	 * @param int      $priority      Приоритет выполнения функции
+	 * @param int      $accepted_args Число аргументов которые принимает функция
+	 */
+	public static function wpHead( $callback, $priority = 10, $accepted_args = 1 ) {
+		self::action( 'wp_head', $callback, $priority, $accepted_args );
+	}
+	/**
+	 * Для хука wp_enqueue_scripts
+	 *
+	 * @param callable $callback      Функция срабатывающая в момент события
+	 * @param int      $priority      Приоритет выполнения функции
+	 * @param int      $accepted_args Число аргументов которые принимает функция
+	 */
+	public static function wpFooter( $callback, $priority = 10, $accepted_args = 1 ) {
+		self::action( 'wp_footer', $callback, $priority, $accepted_args );
+	}
 }
