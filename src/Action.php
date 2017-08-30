@@ -57,6 +57,17 @@ class Action {
 	}
 
 	/**
+	 * Для хука admin_init
+	 *
+	 * @param callable $callback      Функция срабатывающая в момент события
+	 * @param int      $priority      Приоритет выполнения функции
+	 * @param int      $accepted_args Число аргументов которые принимает функция
+	 */
+	public static function adminInit( $callback, $priority = 10, $accepted_args = 1 ) {
+		self::action( 'admin_init', $callback, $priority, $accepted_args );
+	}
+
+	/**
 	 * Для хука init
 	 *
 	 * @param callable $callback      Функция срабатывающая в момент события
