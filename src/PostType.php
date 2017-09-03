@@ -8,7 +8,6 @@
 
 namespace Sau\Lib;
 
-
 /**
  * Класс для описания нового типа записей.
  * После создания класаа необходимо определить входные данные и вызвать метод
@@ -229,7 +228,6 @@ class PostType {
 	 *
 	 * @var string
 	 */
-
 	private $post_type;
 
 	public function __construct( $post_type, PostLabels $labels ) {
@@ -238,8 +236,14 @@ class PostType {
 	}
 
 	public function register() {
-		$callback = function () {
-			register_post_type( $this->post_type, get_object_vars( $this ) );
+		$attr = get_object_vars( $this );
+		foreach ( $attr as $key => $value ) {
+			if ( is_null( $value ) ) {
+				unset( $attr[ $key ] );
+			}
+		}
+		$callback = function () use ( $attr ) {
+			register_post_type( $this->post_type, $attr );
 		};
 		Action::init( $callback );
 	}
