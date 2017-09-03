@@ -14,6 +14,9 @@ namespace Sau\Lib;
  * создания типа записи
  *
  * @see https://wp-kama.ru/function/register_post_type
+ *
+ *      TODO:Дополнить дефолтными значениями
+
  */
 class PostType {
 	/**
