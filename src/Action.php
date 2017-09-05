@@ -8,11 +8,13 @@
 
 namespace Sau\Lib;
 
+use Sau\Lib\Base\BaseAction;
+
 /**
  * Класс описывает хуки
  * Каждый доступный метод класса принимает в себя функцию обратного вызова
  */
-class Action {
+class Action extends BaseAction {
 	/**
 	 * Для хука after_setup_theme
 	 *
@@ -20,9 +22,10 @@ class Action {
 	 * @param int      $priority      Приоритет выполнения функции
 	 * @param int      $accepted_args Число аргументов которые принимает функция
 	 */
-	public static function afterSetupTheme( $callback, $priority = 10, $accepted_args = 1 ) {
+	public static function afterSetupTheme( $callback, $priority = null, $accepted_args = null ) {
 		self::action( 'after_setup_theme', $callback, $priority, $accepted_args );
 	}
+
 	/**
 	 * Для хука login_head
 	 *
@@ -30,9 +33,10 @@ class Action {
 	 * @param int      $priority      Приоритет выполнения функции
 	 * @param int      $accepted_args Число аргументов которые принимает функция
 	 */
-	public static function loginHead( $callback, $priority = 10, $accepted_args = 1 ) {
+	public static function loginHead( $callback, $priority = null, $accepted_args = null ) {
 		self::action( 'login_head', $callback, $priority, $accepted_args );
 	}
+
 	/**
 	 * Для хука admin_notices
 	 *
@@ -40,20 +44,8 @@ class Action {
 	 * @param int      $priority      Приоритет выполнения функции
 	 * @param int      $accepted_args Число аргументов которые принимает функция
 	 */
-	public static function adminNotices( $callback, $priority = 10, $accepted_args = 1 ) {
+	public static function adminNotices( $callback, $priority = null, $accepted_args = null ) {
 		self::action( 'admin_notices', $callback, $priority, $accepted_args );
-	}
-
-	/**
-	 * Выполнение хука
-	 *
-	 * @param callable $hook          Хук
-	 * @param callable $action        Функция обратного ызова
-	 * @param int      $priority      Приоритет выполнения функции
-	 * @param int      $accepted_args Число аргументов которые принимает функция
-	 */
-	protected static function action( $hook, $action, $priority, $accepted_args ) {
-		add_action( $hook, $action, (int) $priority, (int) $accepted_args );
 	}
 
 	/**
@@ -63,7 +55,7 @@ class Action {
 	 * @param int      $priority      Приоритет выполнения функции
 	 * @param int      $accepted_args Число аргументов которые принимает функция
 	 */
-	public static function adminInit( $callback, $priority = 10, $accepted_args = 1 ) {
+	public static function adminInit( $callback, $priority = null, $accepted_args = null ) {
 		self::action( 'admin_init', $callback, $priority, $accepted_args );
 	}
 
@@ -74,7 +66,7 @@ class Action {
 	 * @param int      $priority      Приоритет выполнения функции
 	 * @param int      $accepted_args Число аргументов которые принимает функция
 	 */
-	public static function adminMenu( $callback, $priority = 10, $accepted_args = 1 ) {
+	public static function adminMenu( $callback, $priority = null, $accepted_args = null ) {
 		self::action( 'admin_menu', $callback, $priority, $accepted_args );
 	}
 
@@ -85,7 +77,7 @@ class Action {
 	 * @param int      $priority      Приоритет выполнения функции
 	 * @param int      $accepted_args Число аргументов которые принимает функция
 	 */
-	public static function init( $callback, $priority = 10, $accepted_args = 1 ) {
+	public static function init( $callback, $priority = null, $accepted_args = null ) {
 		self::action( 'init', $callback, $priority, $accepted_args );
 	}
 
@@ -96,7 +88,7 @@ class Action {
 	 * @param int      $priority      Приоритет выполнения функции
 	 * @param int      $accepted_args Число аргументов которые принимает функция
 	 */
-	public static function uploadMines( $callback, $priority = 10, $accepted_args = 1 ) {
+	public static function uploadMines( $callback, $priority = null, $accepted_args = null ) {
 		self::action( 'upload_mines', $callback, $priority, $accepted_args );
 	}
 
@@ -107,7 +99,7 @@ class Action {
 	 * @param int      $priority      Приоритет выполнения функции
 	 * @param int      $accepted_args Число аргументов которые принимает функция
 	 */
-	public static function preGetPosts( $callback, $priority = 10, $accepted_args = 1 ) {
+	public static function preGetPosts( $callback, $priority = null, $accepted_args = null ) {
 		self::action( 'pre_get_posts', $callback, $priority, $accepted_args );
 	}
 
@@ -118,9 +110,10 @@ class Action {
 	 * @param int      $priority      Приоритет выполнения функции
 	 * @param int      $accepted_args Число аргументов которые принимает функция
 	 */
-	public static function wpEnqueueScripts( $callback, $priority = 10, $accepted_args = 1 ) {
+	public static function wpEnqueueScripts( $callback, $priority = null, $accepted_args = null ) {
 		self::action( 'wp_enqueue_scripts', $callback, $priority, $accepted_args );
 	}
+
 	/**
 	 * Для хука wp_head
 	 *
@@ -128,9 +121,10 @@ class Action {
 	 * @param int      $priority      Приоритет выполнения функции
 	 * @param int      $accepted_args Число аргументов которые принимает функция
 	 */
-	public static function wpHead( $callback, $priority = 10, $accepted_args = 1 ) {
+	public static function wpHead( $callback, $priority = null, $accepted_args = null ) {
 		self::action( 'wp_head', $callback, $priority, $accepted_args );
 	}
+
 	/**
 	 * Для хука wp_enqueue_scripts
 	 *
@@ -138,7 +132,7 @@ class Action {
 	 * @param int      $priority      Приоритет выполнения функции
 	 * @param int      $accepted_args Число аргументов которые принимает функция
 	 */
-	public static function wpFooter( $callback, $priority = 10, $accepted_args = 1 ) {
+	public static function wpFooter( $callback, $priority = null, $accepted_args = null ) {
 		self::action( 'wp_footer', $callback, $priority, $accepted_args );
 	}
 }
