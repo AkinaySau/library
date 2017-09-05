@@ -121,7 +121,7 @@ class Theme {
 
 		if ( count( $error ) ) {
 			$error = implode( $error );
-			$error = '<p>При подключении следующих файлов возникли проблемы: </p><u>' . $error . '</u>';
+			$error = '<p>При подключении следующих файлов возникли проблемы: </p><ul>' . $error . '</ul>';
 			Notice::error( $error );
 		}
 
