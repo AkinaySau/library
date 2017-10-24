@@ -144,7 +144,7 @@ class Action extends BaseAction {
 	 * @param int      $accepted_args Число аргументов которые принимает функция
 	 */
 	public static function parseRequest( $callback, $priority = null, $accepted_args = null ) {
-		self::action( 'parse_request ', $callback, $priority, $accepted_args );
+		self::action( 'parse_request', $callback, $priority, $accepted_args );
 	}
 
 	/**
@@ -155,7 +155,7 @@ class Action extends BaseAction {
 	 * @param int      $accepted_args Число аргументов которые принимает функция
 	 */
 	public static function parseQuery( $callback, $priority = null, $accepted_args = null ) {
-		self::action( 'parse_query ', $callback, $priority, $accepted_args );
+		self::action( 'parse_query', $callback, $priority, $accepted_args );
 	}
 
 }
