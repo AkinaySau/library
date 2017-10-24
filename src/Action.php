@@ -147,4 +147,15 @@ class Action extends BaseAction {
 		self::action( 'parse_request ', $callback, $priority, $accepted_args );
 	}
 
+	/**
+	 * Для хука parse_query
+	 *
+	 * @param callable $callback      Функция срабатывающая в момент события
+	 * @param int      $priority      Приоритет выполнения функции
+	 * @param int      $accepted_args Число аргументов которые принимает функция
+	 */
+	public static function parseQuery( $callback, $priority = null, $accepted_args = null ) {
+		self::action( 'parse_query ', $callback, $priority, $accepted_args );
+	}
+
 }
