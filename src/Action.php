@@ -158,4 +158,15 @@ class Action extends BaseAction {
 		self::action( 'parse_query', $callback, $priority, $accepted_args );
 	}
 
+	/**
+	 * Для хука template_include
+	 *
+	 * @param callable $callback      Функция срабатывающая в момент события
+	 * @param int      $priority      Приоритет выполнения функции
+	 * @param int      $accepted_args Число аргументов которые принимает функция
+	 */
+	public static function templateInclude( $callback, $priority = null, $accepted_args = null ) {
+		self::action( 'template_include', $callback, $priority, $accepted_args );
+	}
+
 }
