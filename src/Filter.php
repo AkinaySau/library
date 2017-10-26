@@ -92,4 +92,19 @@ class Filter {
 	public static function imageSizeNamesChoose( $callback, $priority = 10, $accepted_args = 1 ) {
 		return self::filter( 'image_size_names_choose', $callback, $priority, $accepted_args );
 	}
+
+	/**
+	 * Для фильтра pre_get_document_title
+	 *
+	 * @param callable $callback      Функции, которая будет обрабатывать
+	 *                                данные.
+	 * @param int      $priority      Приоритет выполнения функции
+	 * @param int      $accepted_args Число аргументов которые принимает
+	 *                                функция
+	 *
+	 * @return bool
+	 */
+	public static final function preGetDocumentTitle( $callback, $priority = 10, $accepted_args = 1 ) {
+		return self::filter( 'pre_get_document_title', $callback, $priority, $accepted_args );
+	}
 }
