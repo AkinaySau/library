@@ -107,4 +107,17 @@ class Filter {
 	public static final function preGetDocumentTitle( $callback, $priority = 10, $accepted_args = 1 ) {
 		return self::filter( 'pre_get_document_title', $callback, $priority, $accepted_args );
 	}
+
+	/**
+	 * Для фильтра registration_errors
+	 *
+	 * @param callable $callback      Функция срабатывающая в момент события
+	 * @param int      $priority      Приоритет выполнения функции
+	 * @param int      $accepted_args Число аргументов которые принимает функция
+	 *
+	 * @return bool
+	 */
+	public static function registrationErrors( $callback, $priority = null, $accepted_args = null ) {
+		return self::filter( 'registration_errors', $callback, $priority, $accepted_args );
+	}
 }
