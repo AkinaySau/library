@@ -169,4 +169,25 @@ class Action extends BaseAction {
 		self::action( 'template_include', $callback, $priority, $accepted_args );
 	}
 
+	/**
+	 * Для хука registration_errors
+	 *
+	 * @param callable $callback      Функция срабатывающая в момент события
+	 * @param int      $priority      Приоритет выполнения функции
+	 * @param int      $accepted_args Число аргументов которые принимает функция
+	 */
+	public static function registrationErrors( $callback, $priority = null, $accepted_args = null ) {
+		self::action( 'registration_errors', $callback, $priority, $accepted_args );
+	}
+
+	/**
+	 * Для хука user_register
+	 *
+	 * @param callable $callback      Функция срабатывающая в момент события
+	 * @param int      $priority      Приоритет выполнения функции
+	 * @param int      $accepted_args Число аргументов которые принимает функция
+	 */
+	public static function userRegister( $callback, $priority = null, $accepted_args = null ) {
+		self::action( 'user_register', $callback, $priority, $accepted_args );
+	}
 }
