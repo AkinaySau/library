@@ -25,6 +25,16 @@ class Action extends BaseAction {
 	public static function afterSetupTheme( $callback, $priority = null, $accepted_args = null ) {
 		self::action( 'after_setup_theme', $callback, $priority, $accepted_args );
 	}
+	/**
+	 * Для хука widgets_init
+	 *
+	 * @param callable $callback      Функция срабатывающая в момент события
+	 * @param int      $priority      Приоритет выполнения функции
+	 * @param int      $accepted_args Число аргументов которые принимает функция
+	 */
+	public static function widgetsInit( $callback, $priority = null, $accepted_args = null ) {
+		self::action( 'widgets_init', $callback, $priority, $accepted_args );
+	}
 
 	/**
 	 * Для хука login_head
