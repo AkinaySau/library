@@ -12,15 +12,18 @@ namespace Sau\Lib;
 abstract class Sidebar {
 
 	/**
-	 * Название панели виджетов. Название будет видно в админ-панели WordPress. По умолчанию "Боковая колонка 1" (локализация от Sidebar $i, где $i порядковый номер сайдбара). Значение не должно быть пустым!
+	 * Название панели виджетов. Название будет видно в админ-панели WordPress. По умолчанию "Боковая колонка 1"
+	 * (локализация от Sidebar $i, где $i порядковый номер сайдбара). Значение не должно быть пустым!
 	 * @var string
 	 */
-	static protected $name = 'Sidebar %d';
+	static protected $name = 'Sidebar';
 	/**
-	 * Идентификатор виджета. Строка, в которой не должно быть заглавных букв и пробелов. Значение не должно быть пустым, если оставить этот параметр пустым, то в режиме разработки (при дебаге) получите заметку типа E_USER_NOTICE.
+	 * Идентификатор виджета. Строка, в которой не должно быть заглавных букв и пробелов. Значение не должно быть
+	 * пустым, если оставить этот параметр пустым, то в режиме разработки (при дебаге) получите заметку типа
+	 * E_USER_NOTICE.
 	 * @var string
 	 */
-	static protected $id = 'sidebar-$i';
+	static protected $id = 'sidebar';
 
 	/**
 	 * Текст описывающий где будет выводиться панель виджетов. Показывается в панели управления виджетами.
@@ -34,7 +37,8 @@ abstract class Sidebar {
 	 */
 	static protected $class = '';
 	/**
-	 * HTML код, который будет расположен перед каждым виджетом в панели. Например: <li class = "my-widget">. Конструкции %1$s и %2$s будут заменены на id и class используемого в сайдбаре виджета.
+	 * HTML код, который будет расположен перед каждым виджетом в панели. Например: <li class = "my-widget">.
+	 * Конструкции %1$s и %2$s будут заменены на id и class используемого в сайдбаре виджета.
 	 * @var string
 	 */
 	static protected $before_widget = '<li id="%1$s" class="widget %2$s">';
@@ -62,6 +66,10 @@ abstract class Sidebar {
 		});
 	}
 
+	public static function init () {
+		return new static();
+	}
+
 	/**
 	 * @return string
 	 */
@@ -81,5 +89,12 @@ abstract class Sidebar {
 	 */
 	static public function registerArray () {
 		return get_class_vars(static::class);
+	}
+
+	/**
+	 * Render Sidebar
+	 */
+	public static function render () {
+		dynamic_sidebar(static::getId());
 	}
 }
